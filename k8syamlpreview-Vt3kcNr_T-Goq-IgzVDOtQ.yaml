@@ -1,0 +1,3 @@
+# pipeline triggered by: martin2176yahoocom
+# pipeline triggered by email: martin2176@yahoo.com (This returns NULL if the pipeline is triggered using a webhook)
+null
