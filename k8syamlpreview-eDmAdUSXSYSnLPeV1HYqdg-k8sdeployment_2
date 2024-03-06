@@ -1,0 +1,52 @@
+# pipeline triggered by: martin2176yahoocom
+# pipeline triggered by email: martin2176@yahoo.com (This returns NULL if the pipeline is triggered using a webhook)
+# pipeline execution ID: eDmAdUSXSYSnLPeV1HYqdg
+# pipeline Name: k8sdeployment-to-prod-and-dr-namespaces
+# pipeline Stage ID: k8sdeployment_2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "helloworld2"
+  labels:
+    app: "helloworld2"
+    service: "helloworld2"
+spec:
+  ports:
+  - port: 5000
+    name: http
+  selector:
+    app: "helloworld2"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "helloworld2"
+  labels:
+    app: "helloworld2"
+    version: "version98"
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: "helloworld2"
+  template:
+    metadata:
+      labels:
+        app: "helloworld2"
+        version: "version98"
+    spec:
+      containers:
+      - name: "helloworld2"
+        image: "martin2176/prod-helloworld2:version98"
+        resources:
+          requests:
+            cpu: "51m"
+            memory: "65Mi"
+          limits:
+            cpu: "51m"
+            memory: "65Mi"           
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+
